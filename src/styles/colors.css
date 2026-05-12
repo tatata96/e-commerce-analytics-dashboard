@@ -1,0 +1,32 @@
+@theme {
+  /* raw palette */
+  --color-gray-950: #111111;
+  --color-gray-900: #181818;
+  --color-gray-850: #1f1f1f;
+  --color-gray-800: #242424;
+  --color-gray-700: #363636;
+  --color-gray-500: #808080;
+  --color-gray-100: #f8f8f8;
+
+  --color-lime-500: #f2fe67;
+  --color-pink-800: #a056ff;
+  --color-green-500: #10cd7e;
+  --color-blue-500: #2958ff;
+  --color-red-500: #ff603e;
+
+  /* semantic tokens */
+  --color-background: var(--color-gray-900);
+  --color-surface: var(--color-gray-850);
+  --color-surface-muted: var(--color-gray-800);
+  --color-border: var(--color-gray-700);
+
+  --color-text: #ffffff;
+  --color-text-muted: var(--color-gray-500);
+
+  --color-primary: var(--color-lime-500);
+  --color-accent: var(--color-pink-800);
+  --color-success: var(--color-green-500);
+  --color-danger: var(--color-red-500);
+
+  --color-sidebar: var(--color-gray-950);
+}
