@@ -1,27 +1,3 @@
-@font-face {
-  font-family: 'SF-Pro-Rounded-Regular';
-  src: local('SF Pro Rounded'), local('.SFNSRounded-Regular'), local('SFProRounded-Regular');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'SF-Pro-Rounded-Medium';
-  src: local('SF Pro Rounded Medium'), local('.SFNSRounded-Medium'), local('SFProRounded-Medium');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'SF-Pro-Rounded-Semibold';
-  src: local('SF Pro Rounded Semibold'), local('.SFNSRounded-Semibold'), local('SFProRounded-Semibold');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
 @theme {
   /* type scale */
   --text-h2: 2.25rem;       /* 36px — large metric numbers */
@@ -42,7 +18,8 @@
 
 @layer components {
   .type-metric {
-    font-family: 'SF-Pro-Rounded-Semibold', system-ui, -apple-system, sans-serif;
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
     font-size: var(--text-h2);
     line-height: var(--leading-h2);
     letter-spacing: 0.01em;
@@ -50,7 +27,8 @@
   }
 
   .type-heading {
-    font-family: 'SF-Pro-Rounded-Medium', system-ui, -apple-system, sans-serif;
+    font-family: 'Sora', sans-serif;
+    font-weight: 600;
     font-size: var(--text-h3);
     line-height: var(--leading-h3);
     letter-spacing: 0.01em;
@@ -58,7 +36,8 @@
   }
 
   .type-title {
-    font-family: 'SF-Pro-Rounded-Medium', system-ui, -apple-system, sans-serif;
+    font-family: 'Sora', sans-serif;
+    font-weight: 600;
     font-size: var(--text-h4);
     line-height: var(--leading-h4);
     letter-spacing: 0.02em;
@@ -66,7 +45,8 @@
   }
 
   .type-label {
-    font-family: 'SF-Pro-Rounded-Semibold', system-ui, -apple-system, sans-serif;
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
     font-size: var(--text-h5);
     line-height: var(--leading-h5);
     letter-spacing: 0.03em;
@@ -74,7 +54,8 @@
   }
 
   .type-body {
-    font-family: 'SF-Pro-Rounded-Medium', system-ui, -apple-system, sans-serif;
+    font-family: 'Varela Round', sans-serif;
+    font-weight: 500;
     font-size: var(--text-body);
     line-height: var(--leading-body);
     letter-spacing: 0.03em;
@@ -82,7 +63,8 @@
   }
 
   .type-caption {
-    font-family: 'SF-Pro-Rounded-Semibold', system-ui, -apple-system, sans-serif;
+    font-family: 'Varela Round', sans-serif;
+    font-weight: 600;
     font-size: var(--text-caption);
     line-height: var(--leading-caption);
     letter-spacing: 0.01em;

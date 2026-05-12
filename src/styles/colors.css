@@ -20,8 +20,9 @@
   --color-surface-muted: var(--color-gray-800);
   --color-border: var(--color-gray-700);
 
-  --color-text: #ffffff;
+  --color-text: #000000;
   --color-text-muted: var(--color-gray-500);
+  --color-text-light: #ffffff;
 
   --color-primary: var(--color-lime-500);
   --color-accent: var(--color-pink-800);
