@@ -8,13 +8,13 @@ import { convertToEntityLineSeries, convertToEntityBarSeries } from "@/component
 const { kpis, charts } = mockData;
 
 const visibilityCategories = charts.searchVisibilityTrend.categories;
-const visibilitySeries = convertToEntityLineSeries(charts.searchVisibilityTrend.series);
+const visibilitySeries = convertToEntityLineSeries(charts.searchVisibilityTrend.series, "brand");
 
 const { categories: buyboxCategories, series: buyboxSeries } =
-  convertToEntityBarSeries(charts.buyboxWinRateByBrand.title, charts.buyboxWinRateByBrand.data);
+  convertToEntityBarSeries(charts.buyboxWinRateByBrand.title, charts.buyboxWinRateByBrand.data, "brand");
 
 const { categories: availabilityCategories, series: availabilitySeries } =
-  convertToEntityBarSeries(charts.availabilityByRetailer.title, charts.availabilityByRetailer.data);
+  convertToEntityBarSeries(charts.availabilityByRetailer.title, charts.availabilityByRetailer.data, "retailer");
 
 export default function Dashboard() {
   return (

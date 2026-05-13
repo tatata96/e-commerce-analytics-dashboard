@@ -3,8 +3,6 @@
   --color-gray-950: #111111;
   --color-gray-900: #181818;
   --color-gray-850: #1f1f1f;
-  --color-gray-800: #242424;
-  --color-gray-700: #363636;
 
   --color-gray-500: #808080;
   --color-gray-400: #CCCCCC;
@@ -13,14 +11,11 @@
   --color-lime-500: #f2fe67;
   --color-pink-800: #a056ff;
   --color-green-500: #10cd7e;
-  --color-blue-500: #2958ff;
   --color-red-500: #ff603e;
 
   /* semantic tokens */
   --color-background: var(--color-gray-900);
-  --color-surface: var(--color-gray-850);
-  --color-card-bg:  #ffffff;
-  --color-surface-muted: var(--color-gray-100);
+  --color-card-bg: #ffffff;
 
   --color-text: #000000;
   --color-text-muted: var(--color-gray-500);
@@ -36,29 +31,7 @@
   --color-chart-grid: var(--color-gray-400);
   --color-chart-axis: var(--color-gray-500);
   --color-chart-legend: var(--color-gray-500);
-  --color-chart-tooltip-text: var(--color-text-text);
+  --color-chart-tooltip-text: var(--color-text);
 
   --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.12);
-
-  /* entity color palette — brands */
-  --color-entity-apple: #8b5cf6;
-  --color-entity-samsung: #3b82f6;
-  --color-entity-sony: #f97316;
-  --color-entity-dyson: #10b981;
-  --color-entity-lg: #ec4899;
-
-  /* kpi accent colors */
-  --color-kpi-1: #f97316;
-  --color-kpi-2: #8b5cf6;
-  --color-kpi-3: #3b82f6;
-  --color-kpi-4: #ef4444;
-
-  --color-border: #e5e7eb;
-
-  /* entity color palette — retailers */
-  --color-entity-amazon: #0ea5e9;
-  --color-entity-walmart: #f59e0b;
-  --color-entity-target: #ef4444;
-  --color-entity-bestbuy: #6366f1;
-  --color-entity-costco: #14b8a6;
 }

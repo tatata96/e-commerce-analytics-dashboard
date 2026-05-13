@@ -23,7 +23,7 @@ export default function ChartLegend({ items, onToggle }: ChartLegendProps) {
             className="inline-block w-3 h-3 rounded-full shrink-0 "
             style={{ backgroundColor: item.color }}
           />
-          <span className="text-sm ml-2 text-chart-legend">{item.name}</span>
+          <span className="text-sm text-chart-legend">{item.name}</span>
         </button>
       ))}
     </div>

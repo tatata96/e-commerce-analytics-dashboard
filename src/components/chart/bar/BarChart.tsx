@@ -80,7 +80,7 @@ export default function BarChart({ categories, series, height, loading, error, s
 
   const legendItems = series.map((s, i) => ({
     name: s.name,
-    color: s.color ? `var(${s.color})` : `var(${DEFAULT_COLORS[i % DEFAULT_COLORS.length]})`,
+    color: s.color ?? `var(${DEFAULT_COLORS[i % DEFAULT_COLORS.length]})`,
     hidden: hiddenSeries.has(s.name),
   }));
 
