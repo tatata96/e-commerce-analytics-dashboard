@@ -15,5 +15,6 @@
 
 body {
   margin: 0;
-  background-color: var(--color-gray-100);
+  overflow-x: hidden;
+  background: linear-gradient(180deg, #fdf6ee 0%, #dbe7f2 45%, #e6edf5 100%);
 }

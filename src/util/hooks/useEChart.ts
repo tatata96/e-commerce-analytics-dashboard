@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import * as echarts from "echarts";
 
-import { cssVar } from "@/components/chart/chart.utils";
+import { resolveCssVarToHex } from "@/components/chart/chart.utils";
 
 export function useEChart(loading?: boolean) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -33,8 +33,8 @@ export function useEChart(loading?: boolean) {
     if (loading) {
       chart.showLoading("default", {
         text: "",
-        color: cssVar("--color-primary"),
-        maskColor: cssVar("--color-card-bg"),
+        color: resolveCssVarToHex("--color-primary"),
+        maskColor: resolveCssVarToHex("--color-card-bg"),
         spinnerRadius: 10,
         lineWidth: 2,
       });

@@ -1,0 +1,98 @@
+{
+  "kpis": [
+    {
+      "id": "todays_sales",
+      "title": "Today's Sales",
+      "description": "Revenue generated in the last 24 hours across all tracked channels.",
+      "value": 12426,
+      "currency": "USD",
+      "change": 36,
+      "trend": "up",
+      "sparkline": [7200, 8100, 8700, 9200, 10100, 11300, 12426]
+    },
+    {
+      "id": "total_sales",
+      "title": "Total Sales",
+      "description": "Cumulative revenue generated over the selected reporting period.",
+      "value": 238485,
+      "currency": "USD",
+      "change": -14,
+      "trend": "down",
+      "sparkline": [278000, 265000, 260000, 254000, 848000, 242000, 238485]
+    },
+    {
+      "id": "total_orders",
+      "title": "Total Orders",
+      "description": "Number of successfully completed customer orders.",
+      "value": 84382,
+      "change": 22,
+      "trend": "up",
+      "sparkline": [62000, 67000, 70000, 74000, 78000, 82000, 84382]
+    },
+    {
+      "id": "conversion_rate",
+      "title": "Conversion Rate",
+      "description": "Percentage of visitors who completed a purchase.",
+      "value": 3.8,
+      "suffix": "%",
+      "change": 8,
+      "trend": "up",
+      "sparkline": [3.2, 3.3, 3.4, 3.5, 3.6, 3.75, 3.8]
+    }
+  ],
+
+  "charts": {
+    "buyboxWinRateByBrand": {
+      "title": "Buybox Win Rate by Brand",
+      "description": "Percentage of time each brand owns the primary purchase position across marketplaces.",
+      "type": "bar",
+      "data": [
+        { "label": "Apple",   "key": "apple",   "value": 78 },
+        { "label": "Samsung", "key": "samsung", "value": 64 },
+        { "label": "Sony",    "key": "sony",    "value": 52 },
+        { "label": "Dyson",   "key": "dyson",   "value": 88 },
+        { "label": "LG",      "key": "lg",      "value": 61 }
+      ]
+    },
+
+    "availabilityByRetailer": {
+      "title": "Availability by Retailer",
+      "description": "Product availability percentages across major retail partners.",
+      "type": "bar",
+      "data": [
+        { "label": "Amazon",   "key": "amazon",   "value": 92 },
+        { "label": "Walmart",  "key": "walmart",  "value": 85 },
+        { "label": "Target",   "key": "target",   "value": 79 },
+        { "label": "Best Buy", "key": "bestbuy",  "value": 73 },
+        { "label": "Costco",   "key": "costco",   "value": 68 }
+      ]
+    },
+
+    "searchVisibilityTrend": {
+      "title": "Overall Search Visibility Trend",
+      "description": "Monthly trend of brand visibility across ecommerce search placements.",
+      "type": "line",
+      "categories": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      "series": [
+        { "label": "Apple",   "key": "apple",   "data": [55, 60, 63, 58, 68, 72, 75, 70, 80, 84, 88, 95] },
+        { "label": "Samsung", "key": "samsung", "data": [48, 52, 55, 51, 60, 65, 68, 63, 72, 76, 80, 85] },
+        { "label": "Sony",    "key": "sony",    "data": [35, 40, 43, 39, 48, 52, 55, 50, 60, 64, 68, 74] },
+        { "label": "Dyson",   "key": "dyson",   "data": [28, 32, 36, 33, 42, 47, 51, 46, 56, 61, 66, 73] },
+        { "label": "LG",      "key": "lg",      "data": [30, 34, 37, 34, 44, 49, 52, 48, 57, 62, 67, 72] }
+      ]
+    },
+
+    "brandVisibilityDistribution": {
+      "title": "Search Visibility by Brand",
+      "description": "Distribution of overall search visibility share across monitored brands.",
+      "type": "pie",
+      "data": [
+        { "label": "Apple",   "key": "apple",   "value": 30 },
+        { "label": "Samsung", "key": "samsung", "value": 24 },
+        { "label": "Sony",    "key": "sony",    "value": 18 },
+        { "label": "Dyson",   "key": "dyson",   "value": 15 },
+        { "label": "LG",      "key": "lg",      "value": 13 }
+      ]
+    }
+  }
+}

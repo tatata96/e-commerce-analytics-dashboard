@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 
 import { DEFAULT_COLORS, DEFAULT_FONT_SIZE } from "@/components/chart/chart.constants";
-import { cssVar } from "@/components/chart/chart.utils";
+import { resolveCssVarToHex, resolveColor } from "@/components/chart/chart.utils";
 import type { PieChartProps } from "./PieChart.types";
 import ChartLegend from "@/components/chart/legend/ChartLegend";
 import ChartError from "@/components/chart/ChartError";
 import { useEChart } from "@/util/hooks/useEChart";
 import { useToggleSet } from "@/util/hooks/useToggleSet";
 
-export default function PieChart({ data, height = 300, loading, error }: PieChartProps) {
+export default function PieChart({ data, height = 200, loading, error }: PieChartProps) {
   const { containerRef, chartRef } = useEChart(loading);
   const [hiddenSlices, toggleSlice] = useToggleSet<string>();
 
@@ -19,14 +19,14 @@ export default function PieChart({ data, height = 300, loading, error }: PieChar
       return;
     }
 
-    const borderColor = cssVar("--color-card-bg");
+    const borderColor = resolveCssVarToHex("--color-card-bg");
 
     chart.setOption({
       backgroundColor: "transparent",
       tooltip: {
         trigger: "item",
-        backgroundColor: cssVar("--color-card-bg"),
-        textStyle: { color: cssVar("--color-chart-tooltip-text"), fontSize: DEFAULT_FONT_SIZE },
+        backgroundColor: resolveCssVarToHex("--color-card-bg"),
+        textStyle: { color: resolveCssVarToHex("--color-chart-tooltip-text"), fontSize: DEFAULT_FONT_SIZE },
         formatter: "{b}: {c} ({d}%)",
       },
       legend: {
@@ -52,7 +52,7 @@ export default function PieChart({ data, height = 300, loading, error }: PieChar
               show: true,
               fontSize: 20,
               fontWeight: "bold",
-              color: cssVar("--color-text"),
+              color: resolveCssVarToHex("--color-text"),
               formatter: "{b}\n{c}",
             },
           },
@@ -60,7 +60,11 @@ export default function PieChart({ data, height = 300, loading, error }: PieChar
           data: data.map((slice, i) => ({
             name: slice.name,
             value: slice.value,
-            itemStyle: { color: slice.color ?? cssVar(DEFAULT_COLORS[i % DEFAULT_COLORS.length]) },
+            itemStyle: {
+              color: slice.color
+                ? resolveColor(slice.color)
+                : resolveCssVarToHex(DEFAULT_COLORS[i % DEFAULT_COLORS.length]),
+            },
           })),
         },
       ],
@@ -69,7 +73,9 @@ export default function PieChart({ data, height = 300, loading, error }: PieChar
 
   const legendItems = data.map((slice, i) => ({
     name: slice.name,
-    color: slice.color ?? `var(${DEFAULT_COLORS[i % DEFAULT_COLORS.length]})`,
+    color: slice.color
+      ? `var(${slice.color})`
+      : `var(${DEFAULT_COLORS[i % DEFAULT_COLORS.length]})`,
     hidden: hiddenSlices.has(slice.name),
   }));
 

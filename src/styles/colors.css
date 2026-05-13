@@ -39,4 +39,26 @@
   --color-chart-tooltip-text: var(--color-text-text);
 
   --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.12);
+
+  /* entity color palette — brands */
+  --color-entity-apple: #8b5cf6;
+  --color-entity-samsung: #3b82f6;
+  --color-entity-sony: #f97316;
+  --color-entity-dyson: #10b981;
+  --color-entity-lg: #ec4899;
+
+  /* kpi accent colors */
+  --color-kpi-1: #f97316;
+  --color-kpi-2: #8b5cf6;
+  --color-kpi-3: #3b82f6;
+  --color-kpi-4: #ef4444;
+
+  --color-border: #e5e7eb;
+
+  /* entity color palette — retailers */
+  --color-entity-amazon: #0ea5e9;
+  --color-entity-walmart: #f59e0b;
+  --color-entity-target: #ef4444;
+  --color-entity-bestbuy: #6366f1;
+  --color-entity-costco: #14b8a6;
 }

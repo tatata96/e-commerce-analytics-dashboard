@@ -19,8 +19,8 @@
 @layer components {
   .type-metric {
     font-family: 'Sora', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-h2);
+    font-weight: 600;
+    font-size: var(--text-h3);
     line-height: var(--leading-h2);
     letter-spacing: 0.01em;
     color: var(--color-text);

@@ -2,14 +2,14 @@ import { useEffect } from "react";
 import * as echarts from "echarts";
 
 import { DEFAULT_COLORS, DEFAULT_DATA_ZOOM, DEFAULT_FONT_SIZE, DEFAULT_GRID } from "@/components/chart/chart.constants";
-import { cssVar } from "@/components/chart/chart.utils";
+import { resolveCssVarToHex, resolveColor } from "@/components/chart/chart.utils";
 import type { ChartBaseProps } from "@/components/chart/chart.types";
 import ChartLegend from "@/components/chart/legend/ChartLegend";
 import ChartError from "@/components/chart/ChartError";
 import { useEChart } from "@/util/hooks/useEChart";
 import { useToggleSet } from "@/util/hooks/useToggleSet";
 
-export default function LineChart({ categories, series, height = 300, loading, error }: ChartBaseProps) {
+export default function LineChart({ categories, series, height, loading, error }: ChartBaseProps) {
   const { containerRef, chartRef } = useEChart(loading);
   const [hiddenSeries, toggleSeries] = useToggleSet<string>();
 
@@ -26,8 +26,8 @@ export default function LineChart({ categories, series, height = 300, loading, e
       dataZoom: DEFAULT_DATA_ZOOM,
       tooltip: {
         trigger: "axis",
-        backgroundColor: cssVar("--color-card-bg"),
-        textStyle: { color: cssVar("--color-chart-tooltip-text"), fontSize: DEFAULT_FONT_SIZE },
+        backgroundColor: resolveCssVarToHex("--color-card-bg"),
+        textStyle: { color: resolveCssVarToHex("--color-chart-tooltip-text"), fontSize: DEFAULT_FONT_SIZE },
       },
       legend: {
         show: false,
@@ -37,19 +37,19 @@ export default function LineChart({ categories, series, height = 300, loading, e
         type: "category",
         data: categories,
         boundaryGap: false,
-        axisLine: { lineStyle: { color: cssVar("--color-chart-grid") } },
+        axisLine: { lineStyle: { color: resolveCssVarToHex("--color-chart-grid") } },
         axisTick: { show: false },
-        axisLabel: { color: cssVar("--color-chart-axis"), fontSize: DEFAULT_FONT_SIZE },
+        axisLabel: { color: resolveCssVarToHex("--color-chart-axis"), fontSize: DEFAULT_FONT_SIZE },
       },
       yAxis: {
         type: "value",
-        splitLine: { lineStyle: { color: cssVar("--color-chart-grid"), type: "dotted" } },
-        axisLabel: { color: cssVar("--color-chart-axis"), fontSize: DEFAULT_FONT_SIZE },
+        splitLine: { lineStyle: { color: resolveCssVarToHex("--color-chart-grid"), type: "dotted" } },
+        axisLabel: { color: resolveCssVarToHex("--color-chart-axis"), fontSize: DEFAULT_FONT_SIZE },
         axisLine: { show: false },
         axisTick: { show: false },
       },
       series: series.map((s, i) => {
-        const color = s.color ?? cssVar(DEFAULT_COLORS[i % DEFAULT_COLORS.length]);
+        const color = s.color ? resolveColor(s.color) : resolveCssVarToHex(DEFAULT_COLORS[i % DEFAULT_COLORS.length]);
 
         return {
           name: s.name,
@@ -74,7 +74,7 @@ export default function LineChart({ categories, series, height = 300, loading, e
 
   const legendItems = series.map((s, i) => ({
     name: s.name,
-    color: s.color ?? `var(${DEFAULT_COLORS[i % DEFAULT_COLORS.length]})`,
+    color: s.color ? `var(${s.color})` : `var(${DEFAULT_COLORS[i % DEFAULT_COLORS.length]})`,
     hidden: hiddenSeries.has(s.name),
   }));
 
@@ -82,9 +82,15 @@ export default function LineChart({ categories, series, height = 300, loading, e
     return <ChartError error={error} height={height} />;
   }
 
+  const fill = height === undefined;
+
   return (
-    <div>
-      <div ref={containerRef} style={{ height, width: "100%" }} />
+    <div className={fill ? "h-full flex flex-col" : ""}>
+      <div
+        ref={containerRef}
+        className={fill ? "flex-1 min-h-48 lg:min-h-0" : ""}
+        style={{ height: fill ? undefined : height, width: "100%" }}
+      />
 
       <ChartLegend items={legendItems} onToggle={toggleSeries} />
     </div>

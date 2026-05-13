@@ -1,6 +1,11 @@
+export type SeriesDataItem =
+  | number
+  | null
+  | { value: number | null; itemStyle?: { color: string } };
+
 export type Series = {
   name: string;
-  data: (number | null)[];
+  data: SeriesDataItem[];
   color?: string;
 };
 
