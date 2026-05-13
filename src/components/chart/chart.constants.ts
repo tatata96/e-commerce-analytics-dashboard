@@ -5,6 +5,12 @@ export const DEFAULT_COLORS = [
   "--color-danger",
 ] as const;
 
+export const DEFAULT_DATA_ZOOM = [
+  { type: "inside", moveOnMouseWheel: false },
+];
+
+export const DEFAULT_FONT_SIZE = 13;
+
 export const DEFAULT_GRID = {
   top: 16,
   right: 16,
@@ -12,9 +18,3 @@ export const DEFAULT_GRID = {
   left: 48,
   containLabel: false,
 };
-
-export const DEFAULT_DATA_ZOOM = [
-  { type: "inside", moveOnMouseWheel: false },
-];
-
-export const DEFAULT_FONT_SIZE = 13;

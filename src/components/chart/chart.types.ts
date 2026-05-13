@@ -4,7 +4,7 @@ export type Series = {
   color?: string;
 };
 
-export type LineChartProps = {
+export type ChartBaseProps = {
   categories: string[];
   series: Series[];
   height?: number | string;

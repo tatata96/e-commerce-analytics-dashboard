@@ -1,7 +1,6 @@
 import { useEffect } from "react";
-import * as echarts from "echarts";
 
-import { DEFAULT_COLORS, DEFAULT_DATA_ZOOM, DEFAULT_FONT_SIZE, DEFAULT_GRID } from "@/components/chart/chart.constants";
+import { DEFAULT_COLORS, DEFAULT_GRID, DEFAULT_FONT_SIZE } from "@/components/chart/chart.constants";
 import { cssVar } from "@/components/chart/chart.utils";
 import type { ChartBaseProps } from "@/components/chart/chart.types";
 import ChartLegend from "@/components/chart/legend/ChartLegend";
@@ -9,7 +8,7 @@ import ChartError from "@/components/chart/ChartError";
 import { useEChart } from "@/util/hooks/useEChart";
 import { useToggleSet } from "@/util/hooks/useToggleSet";
 
-export default function LineChart({ categories, series, height = 300, loading, error }: ChartBaseProps) {
+export default function BarChart({ categories, series, height = 300, loading, error }: ChartBaseProps) {
   const { containerRef, chartRef } = useEChart(loading);
   const [hiddenSeries, toggleSeries] = useToggleSet<string>();
 
@@ -23,7 +22,6 @@ export default function LineChart({ categories, series, height = 300, loading, e
     chart.setOption({
       backgroundColor: "transparent",
       grid: DEFAULT_GRID,
-      dataZoom: DEFAULT_DATA_ZOOM,
       tooltip: {
         trigger: "axis",
         backgroundColor: cssVar("--color-card-bg"),
@@ -36,7 +34,6 @@ export default function LineChart({ categories, series, height = 300, loading, e
       xAxis: {
         type: "category",
         data: categories,
-        boundaryGap: false,
         axisLine: { lineStyle: { color: cssVar("--color-chart-grid") } },
         axisTick: { show: false },
         axisLabel: { color: cssVar("--color-chart-axis"), fontSize: DEFAULT_FONT_SIZE },
@@ -53,18 +50,12 @@ export default function LineChart({ categories, series, height = 300, loading, e
 
         return {
           name: s.name,
-          type: "line",
-          smooth: true,
+          type: "bar",
           data: s.data,
-          showSymbol: false,
-          itemStyle: { color },
-          lineStyle: { width: 2 },
-          areaStyle: {
-            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-              { offset: 0, color: color + "33" },
-              { offset: 1, color: color + "00" },
-            ]),
-          },
+          itemStyle: { color, borderRadius: 4 },
+          barMaxWidth: 32,
+          barCategoryGap: "20%",
+          barGap: "0%",
         };
       }),
     });
