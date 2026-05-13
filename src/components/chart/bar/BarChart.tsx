@@ -4,7 +4,7 @@ import { DEFAULT_COLORS, DEFAULT_GRID, DEFAULT_FONT_SIZE } from "@/components/ch
 import { resolveCssVarToHex, resolveColor } from "@/components/chart/chart.utils";
 import type { ChartBaseProps, SeriesDataItem } from "@/components/chart/chart.types";
 import ChartLegend from "@/components/chart/legend/ChartLegend";
-import ChartError from "@/components/chart/ChartError";
+import ChartError from "@/components/chart/error/ChartError";
 import { useEChart } from "@/util/hooks/useEChart";
 import { useToggleSet } from "@/util/hooks/useToggleSet";
 
@@ -23,14 +23,14 @@ function resolveDataItem(item: SeriesDataItem) {
   };
 }
 
-export default function BarChart({ categories, series, height, loading, error, showLegend = true }: BarChartProps) {
-  const { containerRef, chartRef } = useEChart(loading);
+export default function BarChart({ categories, series, height, isLoading, isError, showLegend = true }: BarChartProps) {
+  const { containerRef, chartRef } = useEChart(isLoading);
   const [hiddenSeries, toggleSeries] = useToggleSet<string>();
 
   useEffect(() => {
     const chart = chartRef.current;
 
-    if (!chart || loading) {
+    if (!chart || isLoading) {
       return;
     }
 
@@ -76,7 +76,7 @@ export default function BarChart({ categories, series, height, loading, error, s
     });
 
     chart.resize();
-  }, [categories, series, loading, hiddenSeries, chartRef]);
+  }, [categories, series, isLoading, hiddenSeries, chartRef]);
 
   const legendItems = series.map((s, i) => ({
     name: s.name,
@@ -84,14 +84,16 @@ export default function BarChart({ categories, series, height, loading, error, s
     hidden: hiddenSeries.has(s.name),
   }));
 
-  if (error) {
-    return <ChartError error={error} height={height} />;
-  }
-
   const fill = height === undefined;
 
   return (
-    <div className={fill ? "h-full flex flex-col" : ""}>
+    <div className={`relative ${fill ? "h-full flex flex-col" : ""}`}>
+      {isError && (
+        <div className="absolute inset-0 z-10 bg-card-bg">
+          <ChartError error={isError} />
+        </div>
+      )}
+
       <div
         ref={containerRef}
         className={fill ? "flex-1 min-h-48 lg:min-h-0" : ""}

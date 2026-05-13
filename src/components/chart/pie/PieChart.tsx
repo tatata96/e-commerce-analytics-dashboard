@@ -4,7 +4,7 @@ import { DEFAULT_COLORS, DEFAULT_FONT_SIZE } from "@/components/chart/chart.cons
 import { resolveCssVarToHex, resolveColor } from "@/components/chart/chart.utils";
 import type { PieChartProps } from "./PieChart.types";
 import ChartLegend from "@/components/chart/legend/ChartLegend";
-import ChartError from "@/components/chart/ChartError";
+import ChartError from "@/components/chart/error/ChartError";
 import { useEChart } from "@/util/hooks/useEChart";
 import { useToggleSet } from "@/util/hooks/useToggleSet";
 

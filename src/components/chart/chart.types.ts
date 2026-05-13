@@ -13,6 +13,6 @@ export type ChartBaseProps = {
   categories: string[];
   series: Series[];
   height?: number | string;
-  loading?: boolean;
-  error?: string;
+  isLoading?: boolean;
+  isError?: string;
 };

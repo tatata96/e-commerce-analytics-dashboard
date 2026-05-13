@@ -1,13 +1,4 @@
-type LegendItem = {
-  name: string;
-  color: string;
-  hidden: boolean;
-};
-
-type ChartLegendProps = {
-  items: LegendItem[];
-  onToggle: (name: string) => void;
-};
+import type { ChartLegendProps } from "./ChartLegend.types";
 
 export default function ChartLegend({ items, onToggle }: ChartLegendProps) {
   return (
@@ -20,7 +11,7 @@ export default function ChartLegend({ items, onToggle }: ChartLegendProps) {
           style={{ opacity: item.hidden ? 0.35 : 1, transition: "opacity 0.2s" }}
         >
           <span
-            className="inline-block w-3 h-3 rounded-full shrink-0 "
+            className="inline-block w-3 h-3 rounded-full shrink-0"
             style={{ backgroundColor: item.color }}
           />
           <span className="text-sm text-chart-legend">{item.name}</span>

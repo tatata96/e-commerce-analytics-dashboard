@@ -33,10 +33,10 @@ export function useEChart(loading?: boolean) {
     if (loading) {
       chart.showLoading("default", {
         text: "",
-        color: resolveCssVarToHex("--color-primary"),
+        color: resolveCssVarToHex("--color-accent"),
         maskColor: resolveCssVarToHex("--color-card-bg"),
         spinnerRadius: 10,
-        lineWidth: 2,
+        lineWidth: 3,
       });
     } else {
       chart.hideLoading();

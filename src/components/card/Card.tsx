@@ -25,7 +25,7 @@ export default function Card({ title, tooltip, className, fill, children }: Card
         </div>
       )}
 
-      {fill ? <div className="flex-1 min-h-0">{children}</div> : children}
+      {fill ? <div className="flex-1 min-h-0 ">{children}</div> : children}
     </div>
   );
 }

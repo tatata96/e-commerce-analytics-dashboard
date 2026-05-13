@@ -1,27 +1,10 @@
 import { useState } from "react";
-
-type TooltipVariant = "default" | "light";
-
-type TooltipProps = {
-  label: string;
-  children: React.ReactNode;
-  variant?: TooltipVariant;
-};
-
-const variantStyles: Record<TooltipVariant, { bubble: string; arrow: string }> = {
-  default: {
-    bubble: "bg-accent text-text-light",
-    arrow: "border-r-accent",
-  },
-  light: {
-    bubble: "bg-card-bg text-text shadow-card",
-    arrow: "border-r-card-bg",
-  },
-};
+import { VARIANT_STYLES } from "./Tooltip.constants";
+import type { TooltipProps } from "./Tooltip.types";
 
 export default function Tooltip({ label, children, variant = "default" }: TooltipProps) {
   const [visible, setVisible] = useState(false);
-  const styles = variantStyles[variant];
+  const styles = VARIANT_STYLES[variant];
 
   return (
     <div
