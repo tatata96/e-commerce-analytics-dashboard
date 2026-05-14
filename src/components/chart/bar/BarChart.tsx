@@ -90,7 +90,7 @@ export default function BarChart({ categories, series, height, isLoading, isErro
         style={{ height: fill ? undefined : height, width: "100%" }}
       />
 
-      {showLegend && <ChartLegend items={legendItems} onToggle={toggleSeries} />}
+      {showLegend && !isLoading && <ChartLegend items={legendItems} onToggle={toggleSeries} />}
     </div>
   );
 }

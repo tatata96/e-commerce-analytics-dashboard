@@ -3,17 +3,14 @@
     {
       "id": "todays_sales",
       "title": "Today's Sales",
-      "description": "Revenue generated in the last 24 hours across all tracked channels.",
       "value": 12426,
       "currency": "USD",
       "change": 36,
-      "trend": "up",
-      "sparkline": [7200, 8100, 8700, 9200, 10100, 11300, 12426]
+      "trend": "up"
     },
     {
       "id": "total_sales",
       "title": "Total Sales",
-      "description": "Cumulative revenue generated over the selected reporting period.",
       "value": 238485,
       "currency": "USD",
       "change": -14,
@@ -21,7 +18,6 @@
     {
       "id": "total_orders",
       "title": "Total Orders",
-      "description": "Number of successfully completed customer orders.",
       "value": 84382,
       "change": 22,
       "trend": "up"
@@ -29,7 +25,6 @@
     {
       "id": "conversion_rate",
       "title": "Conversion Rate",
-      "description": "Percentage of visitors who completed a purchase.",
       "value": 3.8,
       "suffix": "%",
       "change": 8,

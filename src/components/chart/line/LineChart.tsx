@@ -119,7 +119,7 @@ export default function LineChart({
         style={{height: fill ? undefined : height, width: "100%"}}
       />
 
-      <ChartLegend items={legendItems} onToggle={toggleSeries} />
+      {!isLoading && <ChartLegend items={legendItems} onToggle={toggleSeries} />}
     </div>
   );
 }
