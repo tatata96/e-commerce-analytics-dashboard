@@ -26,17 +26,15 @@ const visibilitySeries = convertToColoredLineSeries(
 
 const {categories: buyboxCategories, series: buyboxSeries} =
   convertToColoredBarSeries(
-    charts.buyboxWinRateByBrand.title,
     charts.buyboxWinRateByBrand.data,
     resolveChartColor,
   );
 
 const {categories: availabilityCategories, series: availabilitySeries} =
   convertToColoredBarSeries(
-    charts.availabilityByRetailer.title,
     charts.availabilityByRetailer.data,
     resolveChartColor,
-  );
+  );  
 
 export default function Dashboard() {
   const [viewState, setViewState] = useState<Status>("success");

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import { DEFAULT_GRID, DEFAULT_FONT_SIZE } from "@/components/chart/chart.constants";
 import { getStableColor, resolveCssVarToHex, resolveColor } from "@/components/chart/chart.utils";
-import type { ChartBaseProps, SeriesDataItem } from "@/components/chart/chart.types";
+import type { ChartBaseProps } from "@/components/chart/chart.types";
 import ChartLegend from "@/components/chart/legend/ChartLegend";
 import ChartError from "@/components/chart/error/ChartError";
 import { useEChart } from "@/util/hooks/useEChart";
@@ -12,16 +12,6 @@ type BarChartProps = ChartBaseProps & {
   showLegend?: boolean;
 };
 
-function resolveDataItem(item: SeriesDataItem) {
-  if (typeof item === "number" || item === null) {
-    return item;
-  }
-
-  return {
-    value: item.value,
-    itemStyle: item.itemStyle ? { color: resolveColor(item.itemStyle.color) } : undefined,
-  };
-}
 
 export default function BarChart({ categories, series, height, isLoading, isError, showLegend = true }: BarChartProps) {
   const { containerRef, chartRef } = useEChart(isLoading);
@@ -66,7 +56,7 @@ export default function BarChart({ categories, series, height, isLoading, isErro
         return {
           name: s.name,
           type: "bar",
-          data: s.data.map(resolveDataItem),
+          data: s.data,
           itemStyle: { color, borderRadius: 4 },
           barMaxWidth: 32,
           barCategoryGap: "20%",

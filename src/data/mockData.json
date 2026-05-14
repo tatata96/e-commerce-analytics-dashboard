@@ -17,17 +17,14 @@
       "value": 238485,
       "currency": "USD",
       "change": -14,
-      "trend": "down",
-      "sparkline": [278000, 265000, 260000, 254000, 848000, 242000, 238485]
-    },
+      "trend": "down"    },
     {
       "id": "total_orders",
       "title": "Total Orders",
       "description": "Number of successfully completed customer orders.",
       "value": 84382,
       "change": 22,
-      "trend": "up",
-      "sparkline": [62000, 67000, 70000, 74000, 78000, 82000, 84382]
+      "trend": "up"
     },
     {
       "id": "conversion_rate",
@@ -36,8 +33,7 @@
       "value": 3.8,
       "suffix": "%",
       "change": 8,
-      "trend": "up",
-      "sparkline": [3.2, 3.3, 3.4, 3.5, 3.6, 3.75, 3.8]
+      "trend": "up"
     }
   ],
 

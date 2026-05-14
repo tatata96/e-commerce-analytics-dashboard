@@ -90,7 +90,6 @@ export function convertToColoredLineSeries(
 }
 
 export function convertToColoredBarSeries(
-  name: string,
   data: ChartItem[],
   resolveColorForItem: ChartColorResolver,
 ) {
@@ -98,7 +97,7 @@ export function convertToColoredBarSeries(
     categories: data.map((d) => d.label),
     series: [
       {
-        name,
+        name: "",
         data: data.map((d) => ({
           value: d.value,
           itemStyle: {
