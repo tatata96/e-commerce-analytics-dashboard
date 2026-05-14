@@ -1,16 +1,29 @@
-import { useEffect } from "react";
-import * as echarts from "echarts";
+import {useEffect} from "react";
 
-import { DEFAULT_COLORS, DEFAULT_DATA_ZOOM, DEFAULT_FONT_SIZE, DEFAULT_GRID } from "@/components/chart/chart.constants";
-import { resolveCssVarToHex, resolveColor } from "@/components/chart/chart.utils";
-import type { ChartBaseProps } from "@/components/chart/chart.types";
+import {
+  DEFAULT_DATA_ZOOM,
+  DEFAULT_FONT_SIZE,
+  DEFAULT_GRID,
+} from "@/components/chart/chart.constants";
+import {
+  getStableColor,
+  resolveCssVarToHex,
+  resolveColor,
+} from "@/components/chart/chart.utils";
+import type {ChartBaseProps} from "@/components/chart/chart.types";
 import ChartLegend from "@/components/chart/legend/ChartLegend";
 import ChartError from "@/components/chart/error/ChartError";
-import { useEChart } from "@/util/hooks/useEChart";
-import { useToggleSet } from "@/util/hooks/useToggleSet";
+import {useEChart} from "@/util/hooks/useEChart";
+import {useToggleSet} from "@/util/hooks/useToggleSet";
 
-export default function LineChart({ categories, series, height, isLoading, isError }: ChartBaseProps) {
-  const { containerRef, chartRef } = useEChart(isLoading);
+export default function LineChart({
+  categories,
+  series,
+  height,
+  isLoading,
+  isError,
+}: ChartBaseProps) {
+  const {containerRef, chartRef} = useEChart(isLoading);
   const [hiddenSeries, toggleSeries] = useToggleSet<string>();
 
   useEffect(() => {
@@ -27,29 +40,47 @@ export default function LineChart({ categories, series, height, isLoading, isErr
       tooltip: {
         trigger: "axis",
         backgroundColor: resolveCssVarToHex("--color-card-bg"),
-        textStyle: { color: resolveCssVarToHex("--color-chart-tooltip-text"), fontSize: DEFAULT_FONT_SIZE },
+        textStyle: {
+          color: resolveCssVarToHex("--color-chart-tooltip-text"),
+          fontSize: DEFAULT_FONT_SIZE,
+        },
       },
       legend: {
         show: false,
-        selected: Object.fromEntries(series.map((s) => [s.name, !hiddenSeries.has(s.name)])),
+        selected: Object.fromEntries(
+          series.map((s) => [s.name, !hiddenSeries.has(s.name)]),
+        ),
       },
       xAxis: {
         type: "category",
         data: categories,
         boundaryGap: false,
-        axisLine: { lineStyle: { color: resolveCssVarToHex("--color-chart-grid") } },
-        axisTick: { show: false },
-        axisLabel: { color: resolveCssVarToHex("--color-chart-axis"), fontSize: DEFAULT_FONT_SIZE },
+        axisLine: {
+          lineStyle: {color: resolveCssVarToHex("--color-chart-grid")},
+        },
+        axisTick: {show: false},
+        axisLabel: {
+          color: resolveCssVarToHex("--color-chart-axis"),
+          fontSize: DEFAULT_FONT_SIZE,
+        },
       },
       yAxis: {
         type: "value",
-        splitLine: { lineStyle: { color: resolveCssVarToHex("--color-chart-grid"), type: "dotted" } },
-        axisLabel: { color: resolveCssVarToHex("--color-chart-axis"), fontSize: DEFAULT_FONT_SIZE },
-        axisLine: { show: false },
-        axisTick: { show: false },
+        splitLine: {
+          lineStyle: {
+            color: resolveCssVarToHex("--color-chart-grid"),
+            type: "dotted",
+          },
+        },
+        axisLabel: {
+          color: resolveCssVarToHex("--color-chart-axis"),
+          fontSize: DEFAULT_FONT_SIZE,
+        },
+        axisLine: {show: false},
+        axisTick: {show: false},
       },
-      series: series.map((s, i) => {
-        const color = s.color ? resolveColor(s.color) : resolveCssVarToHex(DEFAULT_COLORS[i % DEFAULT_COLORS.length]);
+      series: series.map((s) => {
+        const color = s.color ? resolveColor(s.color) : getStableColor(s.name);
 
         return {
           name: s.name,
@@ -57,14 +88,8 @@ export default function LineChart({ categories, series, height, isLoading, isErr
           smooth: true,
           data: s.data,
           showSymbol: false,
-          itemStyle: { color },
-          lineStyle: { width: 2 },
-          areaStyle: {
-            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-              { offset: 0, color: color + "33" },
-              { offset: 1, color: color + "00" },
-            ]),
-          },
+          itemStyle: {color},
+          lineStyle: {width: 2},
         };
       }),
     });
@@ -72,9 +97,9 @@ export default function LineChart({ categories, series, height, isLoading, isErr
     chart.resize();
   }, [categories, series, isLoading, hiddenSeries, chartRef]);
 
-  const legendItems = series.map((s, i) => ({
+  const legendItems = series.map((s) => ({
     name: s.name,
-    color: s.color ?? `var(${DEFAULT_COLORS[i % DEFAULT_COLORS.length]})`,
+    color: s.color ?? getStableColor(s.name),
     hidden: hiddenSeries.has(s.name),
   }));
 
@@ -91,7 +116,7 @@ export default function LineChart({ categories, series, height, isLoading, isErr
       <div
         ref={containerRef}
         className={fill ? "flex-1 min-h-48 lg:min-h-0" : ""}
-        style={{ height: fill ? undefined : height, width: "100%" }}
+        style={{height: fill ? undefined : height, width: "100%"}}
       />
 
       <ChartLegend items={legendItems} onToggle={toggleSeries} />

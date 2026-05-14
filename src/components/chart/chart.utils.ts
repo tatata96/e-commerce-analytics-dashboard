@@ -1,7 +1,11 @@
 // — Style utilities —
 
+import {CHART_COLORS} from "./chart.constants";
+
 export function resolveCssVarToHex(name: string): string {
-  const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  const value = getComputedStyle(document.documentElement)
+    .getPropertyValue(name)
+    .trim();
   const ref = value.match(/^var\(([^,)]+)/);
   return ref ? resolveCssVarToHex(ref[1].trim()) : value;
 }
@@ -10,68 +14,85 @@ export function resolveColor(color: string): string {
   return color.startsWith("--") ? resolveCssVarToHex(color) : color;
 }
 
-const PALETTES: Record<"brand" | "retailer", readonly string[]> = {
-  brand: [
-    "#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00",
-    "#7209b7", "#dd2d4a", "#4361ee", "#ffd60a", "#f72585",
-    "#390099", "#0353a4",
-  ],
-  retailer: [
-    "#8dd3c7", "#bebada", "#fb8072", "#80b1d3", "#f6bd60",
-    "#b3de69", "#bc80bd", "#fccde5", "#ccebc5", "#ffed6f",
-    "#efebce", "#e0aaff",
-  ],
-};
-
-/** Maps a string key to a stable integer via djb2 — same key always produces the same index. */
-function hashKey(key: string): number {
+/** Maps a string label to a stable integer via djb2. */
+function hashLabel(label: string): number {
   let hash = 5381;
-  for (let i = 0; i < key.length; i++) {
-    hash = (hash * 33) ^ key.charCodeAt(i);
+  for (let i = 0; i < label.length; i++) {
+    hash = (hash * 33) ^ label.charCodeAt(i);
   }
   return Math.abs(hash);
 }
 
+function normalizeLabel(label: string): string {
+  return label.trim().toLowerCase();
+}
+
+/** Returns a deterministic color for a label from the shared chart palette. */
+export function getStableColor(label: string): string {
+  return CHART_COLORS[hashLabel(normalizeLabel(label)) % CHART_COLORS.length];
+}
+
+function getAlternateColor(label: string, offset: number): string {
+  const index =
+    (hashLabel(normalizeLabel(label)) + offset) % CHART_COLORS.length;
+  return CHART_COLORS[index];
+}
+
+export type ChartColorResolver = (item: {label: string}) => string;
+
 /**
- * Returns a deterministic hex color for an entity key from the appropriate palette.
- * Same key always resolves to the same color regardless of which chart it appears in.
+ * Creates one deterministic color map for a known label universe and returns
+ * a resolver function that maps each label item to its assigned color.
+ * Build this once at the dashboard/data-boundary level, then reuse it for each chart.
  */
-export function getEntityColor(entityType: "brand" | "retailer", key: string): string {
-  const palette = PALETTES[entityType];
-  return palette[hashKey(key) % palette.length];
+export function createChartColorResolver(
+  items: {label: string}[],
+): ChartColorResolver {
+  const assignments = new Map<string, string>();
+  const usedColors = new Set<string>();
+  const uniqueLabels = new Set(items.map((item) => item.label));
+  const sortedLabels = Array.from(uniqueLabels).sort((a, b) => {
+    return a.localeCompare(b);
+  });
+
+  sortedLabels.forEach((label) => {
+    let color = getStableColor(label);
+
+    for (
+      let offset = 1;
+      usedColors.has(color) && offset < CHART_COLORS.length;
+      offset++
+    ) {
+      color = getAlternateColor(label, offset);
+    }
+
+    assignments.set(label, color);
+    usedColors.add(color);
+  });
+
+  return (item) => assignments.get(item.label) ?? getStableColor(item.label);
 }
 
 // — Data mapping utilities —
 
-type EntityItem = { label: string; key: string; value: number };
-type EntitySeriesItem = { label: string; key: string; data: number[] };
+type ChartItem = {label: string; value: number};
+type ChartSeriesItem = {label: string; data: number[]};
 
-export function convertToEntityLineSeries(
-  series: EntitySeriesItem[],
-  entityType: "brand" | "retailer",
+export function convertToColoredLineSeries(
+  series: ChartSeriesItem[],
+  resolveColorForItem: ChartColorResolver,
 ) {
   return series.map((s) => ({
     name: s.label,
     data: s.data,
-    color: getEntityColor(entityType, s.key),
+    color: resolveColorForItem(s),
   }));
 }
 
-export function convertToEntityPieData(
-  data: EntityItem[],
-  entityType: "brand" | "retailer",
-) {
-  return data.map((d) => ({
-    name: d.label,
-    value: d.value,
-    color: getEntityColor(entityType, d.key),
-  }));
-}
-
-export function convertToEntityBarSeries(
+export function convertToColoredBarSeries(
   name: string,
-  data: EntityItem[],
-  entityType: "brand" | "retailer",
+  data: ChartItem[],
+  resolveColorForItem: ChartColorResolver,
 ) {
   return {
     categories: data.map((d) => d.label),
@@ -80,7 +101,9 @@ export function convertToEntityBarSeries(
         name,
         data: data.map((d) => ({
           value: d.value,
-          itemStyle: { color: getEntityColor(entityType, d.key) },
+          itemStyle: {
+            color: resolveColorForItem(d),
+          },
         })),
       },
     ],

@@ -47,11 +47,11 @@
       "description": "Percentage of time each brand owns the primary purchase position across marketplaces.",
       "type": "bar",
       "data": [
-        { "label": "Apple",   "key": "apple",   "value": 78 },
-        { "label": "Samsung", "key": "samsung", "value": 64 },
-        { "label": "Sony",    "key": "sony",    "value": 52 },
-        { "label": "Dyson",   "key": "dyson",   "value": 88 },
-        { "label": "LG",      "key": "lg",      "value": 61 }
+        {"label": "Apple", "value": 78},
+        {"label": "Samsung", "value": 64},
+        {"label": "Sony", "value": 52},
+        {"label": "Dyson", "value": 88},
+        {"label": "LG", "value": 61}
       ]
     },
 
@@ -60,11 +60,11 @@
       "description": "Product availability percentages across major retail partners.",
       "type": "bar",
       "data": [
-        { "label": "Amazon",   "key": "amazon",   "value": 92 },
-        { "label": "Walmart",  "key": "walmart",  "value": 85 },
-        { "label": "Target",   "key": "target",   "value": 79 },
-        { "label": "Best Buy", "key": "bestbuy",  "value": 73 },
-        { "label": "Costco",   "key": "costco",   "value": 68 }
+        {"label": "Amazon", "value": 92},
+        {"label": "Walmart", "value": 85},
+        {"label": "Target", "value": 79},
+        {"label": "Best Buy", "value": 73},
+        {"label": "Costco", "value": 68}
       ]
     },
 
@@ -72,26 +72,41 @@
       "title": "Overall Search Visibility Trend",
       "description": "Monthly trend of brand visibility across ecommerce search placements.",
       "type": "line",
-      "categories": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      "categories": [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+      ],
       "series": [
-        { "label": "Apple",   "key": "apple",   "data": [55, 60, 63, 58, 68, 72, 75, 70, 80, 84, 88, 95] },
-        { "label": "Samsung", "key": "samsung", "data": [48, 52, 55, 51, 60, 65, 68, 63, 72, 76, 80, 85] },
-        { "label": "Sony",    "key": "sony",    "data": [35, 40, 43, 39, 48, 52, 55, 50, 60, 64, 68, 74] },
-        { "label": "Dyson",   "key": "dyson",   "data": [28, 32, 36, 33, 42, 47, 51, 46, 56, 61, 66, 73] },
-        { "label": "LG",      "key": "lg",      "data": [30, 34, 37, 34, 44, 49, 52, 48, 57, 62, 67, 72] }
-      ]
-    },
-
-    "brandVisibilityDistribution": {
-      "title": "Search Visibility by Brand",
-      "description": "Distribution of overall search visibility share across monitored brands.",
-      "type": "pie",
-      "data": [
-        { "label": "Apple",   "key": "apple",   "value": 30 },
-        { "label": "Samsung", "key": "samsung", "value": 24 },
-        { "label": "Sony",    "key": "sony",    "value": 18 },
-        { "label": "Dyson",   "key": "dyson",   "value": 15 },
-        { "label": "LG",      "key": "lg",      "value": 13 }
+        {
+          "label": "Apple",
+          "data": [55, 60, 63, 58, 68, 72, 75, 70, 80, 84, 88, 95]
+        },
+        {
+          "label": "Samsung",
+          "data": [48, 52, 55, 51, 60, 65, 68, 63, 72, 76, 80, 85]
+        },
+        {
+          "label": "Sony",
+          "data": [35, 40, 43, 39, 48, 52, 55, 50, 60, 64, 68, 74]
+        },
+        {
+          "label": "Dyson",
+          "data": [28, 32, 36, 33, 42, 47, 51, 46, 56, 61, 66, 73]
+        },
+        {
+          "label": "LG",
+          "data": [30, 34, 37, 34, 44, 49, 52, 48, 57, 62, 67, 72]
+        }
       ]
     }
   }

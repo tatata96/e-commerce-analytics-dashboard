@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
-import { DEFAULT_COLORS, DEFAULT_GRID, DEFAULT_FONT_SIZE } from "@/components/chart/chart.constants";
-import { resolveCssVarToHex, resolveColor } from "@/components/chart/chart.utils";
+import { DEFAULT_GRID, DEFAULT_FONT_SIZE } from "@/components/chart/chart.constants";
+import { getStableColor, resolveCssVarToHex, resolveColor } from "@/components/chart/chart.utils";
 import type { ChartBaseProps, SeriesDataItem } from "@/components/chart/chart.types";
 import ChartLegend from "@/components/chart/legend/ChartLegend";
 import ChartError from "@/components/chart/error/ChartError";
@@ -60,8 +60,8 @@ export default function BarChart({ categories, series, height, isLoading, isErro
         axisLine: { show: false },
         axisTick: { show: false },
       },
-      series: series.map((s, i) => {
-        const color = s.color ? resolveColor(s.color) : resolveCssVarToHex(DEFAULT_COLORS[i % DEFAULT_COLORS.length]);
+      series: series.map((s) => {
+        const color = s.color ? resolveColor(s.color) : getStableColor(s.name);
 
         return {
           name: s.name,
@@ -78,9 +78,9 @@ export default function BarChart({ categories, series, height, isLoading, isErro
     chart.resize();
   }, [categories, series, isLoading, hiddenSeries, chartRef]);
 
-  const legendItems = series.map((s, i) => ({
+  const legendItems = series.map((s) => ({
     name: s.name,
-    color: s.color ?? `var(${DEFAULT_COLORS[i % DEFAULT_COLORS.length]})`,
+    color: s.color ?? getStableColor(s.name),
     hidden: hiddenSeries.has(s.name),
   }));
 
