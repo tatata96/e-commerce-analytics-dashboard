@@ -45,7 +45,7 @@ export default function Dashboard() {
   return (
     <main className="min-w-0 flex-1 flex flex-col overflow-y-auto p-6 pb-24 md:pb-6">
       <div className="shrink-0 flex items-center justify-between">
-        <h1 className="type-heading">Welcome back, Tamara!</h1>
+        <h1 className="type-heading">Analytics Dashboard</h1>
 
         <StatusToggle value={viewState} onChange={setViewState} />
       </div>

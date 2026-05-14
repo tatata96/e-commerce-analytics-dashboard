@@ -7,6 +7,7 @@ export function useEChart(loading?: boolean) {
   const containerRef = useRef<HTMLDivElement>(null);
   const chartRef = useRef<echarts.ECharts | null>(null);
 
+  // Initialize the ECharts instance once the container mounts; dispose on unmount.
   useEffect(() => {
     const container = containerRef.current;
 
@@ -43,6 +44,7 @@ export function useEChart(loading?: boolean) {
     }
   }, [loading]);
 
+  // Keep the chart dimensions in sync when the container is resized.
   useEffect(() => {
     const container = containerRef.current;
 

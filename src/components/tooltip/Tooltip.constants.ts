@@ -1,12 +1,16 @@
 import type { TooltipVariant } from "./Tooltip.types";
 
-export const VARIANT_STYLES: Record<TooltipVariant, { bubble: string; arrow: string }> = {
+export const VARIANT_STYLES: Record<TooltipVariant, { bubble: string; arrowRight: string; arrowLeft: string; arrowBottom: string }> = {
   default: {
     bubble: "bg-accent text-text-light",
-    arrow: "border-r-accent",
+    arrowRight: "border-r-accent",
+    arrowLeft: "border-l-accent",
+    arrowBottom: "border-b-accent",
   },
   light: {
     bubble: "bg-card-bg text-text shadow-card",
-    arrow: "border-r-card-bg",
+    arrowRight: "border-r-card-bg",
+    arrowLeft: "border-l-card-bg",
+    arrowBottom: "border-b-card-bg",
   },
 };

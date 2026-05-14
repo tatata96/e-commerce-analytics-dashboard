@@ -1,5 +1,5 @@
 import { AlertCircle, ArrowUp, ArrowDown } from "lucide-react";
-import { formatKPIValue } from "@/util/formatValue";
+import { formatKPIValue } from "@/components/kpi/kpiRow.utils";
 import type { KpiRowProps } from "./KpiRow.types";
 
 export default function KpiRow({ items, isLoading, isError }: KpiRowProps) {

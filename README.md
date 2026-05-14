@@ -2,7 +2,9 @@
 
 A React dashboard built for a case study. It displays KPI metrics and three charts — a trend line and two bar charts — with consistent cross-chart color mapping for shared labels.
 
-## 🚀 How to Run
+**Check out the live demo:** [e-commerce-analytics-dashboard-dopf.vercel.app](https://e-commerce-analytics-dashboard-dopf.vercel.app/)
+
+## 🚀 How to Run Locally
 
 **Requirements:** Node.js 18+
 

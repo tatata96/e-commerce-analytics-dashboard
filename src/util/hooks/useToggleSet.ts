@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+// Manages a Set whose members can be added or removed with a single toggle call.
 export function useToggleSet<T>() {
   const [set, setSet] = useState<Set<T>>(new Set());
 

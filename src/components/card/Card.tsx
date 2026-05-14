@@ -18,7 +18,7 @@ export default function Card({ title, tooltip, className, fill, children }: Card
           <h2 className="type-title text-text">{title}</h2>
 
           {tooltip && (
-            <Tooltip label={tooltip} variant="light">
+            <Tooltip label={tooltip} variant="light" placement="bottom">
               <Info size={16} className="cursor-help text-text-muted" />
             </Tooltip>
           )}
